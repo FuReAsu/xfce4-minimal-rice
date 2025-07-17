@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=GlobalProtect
+Comment=Connect or disconnect GlobalProtect VPN
+Exec=/home/fureasu/.local/bin/global-protect.sh
+Icon=/media/fureasu/DATA/Media/Logos/globalprotectlogo.png
+Terminal=false
+Categories=Network;
+

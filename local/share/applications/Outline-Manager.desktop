@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Outline-Manager
+Exec=/home/fureasu/.local/bin/Outline-Manager.AppImage --no-sandbox
+Icon=/home/fureasu/.local/share/icons/misc/OutlineManager.png
+Type=Application
+Categories=Internet;Application;
+Comment=Outline VPN Manager
+Terminal=false
