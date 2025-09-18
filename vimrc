@@ -53,10 +53,10 @@ let g:indentLine_color_gui = "#66576b"
 
 " Set theme
 set background=dark
-colorscheme moonfly
-"colorscheme catppuccin-mocha
-let g:lightline = { 'colorscheme': 'moonfly' }
-"let g:lightline = { 'colorscheme': 'catppuccin_mocha' }
+"colorscheme moonfly
+colorscheme catppuccin-mocha
+"let g:lightline = { 'colorscheme': 'moonfly' }
+let g:lightline = { 'colorscheme': 'catppuccin_mocha' }
 
 " Set transparency AFTER colorscheme
 hi Normal guibg=NONE ctermbg=NONE
@@ -90,6 +90,14 @@ nnoremap <silent> gd <Plug>(coc-definition)
 
 " Show hover documentation
 nnoremap <silent> K :call CocActionAsync('doHover')<CR>
+
+" Scroll floating/hover window forward/backward
+nnoremap <expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+
+" Scroll floating/hover window in insert mode
+inoremap <expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<Right>"
+inoremap <expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<Left>"
 
 " Rename symbol
 nnoremap <leader>rn <Plug>(coc-rename)
