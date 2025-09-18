@@ -92,12 +92,12 @@ nnoremap <silent> gd <Plug>(coc-definition)
 nnoremap <silent> K :call CocActionAsync('doHover')<CR>
 
 " Scroll floating/hover window forward/backward
-nnoremap <expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+nnoremap <expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1, 3) : "\<C-f>"
+nnoremap <expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0, 3) : "\<C-b>"
 
 " Scroll floating/hover window in insert mode
-inoremap <expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<Right>"
-inoremap <expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<Left>"
+inoremap <expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1, 3) : "\<Right>"
+inoremap <expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0, 3) : "\<Left>"
 
 " Rename symbol
 nnoremap <leader>rn <Plug>(coc-rename)
