@@ -35,7 +35,17 @@ kubectl_context() {
     echo "$output"
 }
 
-default_prompt="$C0[$C5🐧\u@\h:$C6\$(short_pwd)$C0]$C3$C1\$(__git_ps1)$C0\n\$ "
+#recording status
+recording_status() {
+    if [ "$RECORDING" == "true" ]; then
+        rec_status="🎥"
+    else
+        rec_status=""
+    fi
+    echo "$rec_status"
+}
+
+default_prompt="$C0[$C6🐧 \u@\h:$C4\$(short_pwd)$C0]$C5\$(__git_ps1) $(recording_status)$C0\n\$ "
 #default prompt
 export PS1="$default_prompt"
 export PS2="-> "
