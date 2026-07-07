@@ -64,7 +64,18 @@ ovpn_status() {
     fi
 }
 
-default_prompt="$C0[$C6🐧 \u@\h:$C4\$(short_pwd)$C0]$C5\$(__git_ps1)$C3\$(ovpn_status) \$(recording_status)$C0\n\$ "
+#cloudflare warp status
+warp_status() {
+    if command -v warp-cli >/dev/null 2>&1; then
+        local status
+        status=$(warp-cli status 2>/dev/null)
+        if [[ "$status" =~ "Status update: Connected" ]]; then
+            echo " [WARP]"
+        fi
+    fi
+}
+
+default_prompt="$C0[$C6🐧 \u@\h:$C4\$(short_pwd)$C0]$C5\$(__git_ps1)$C3\$(ovpn_status)\$(warp_status) \$(recording_status)$C0\n\$ "
 #default prompt
 export PS1="$default_prompt"
 export PS2="-> "
