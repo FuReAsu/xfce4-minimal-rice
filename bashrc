@@ -8,8 +8,8 @@ export DATA=/media/fureasu/DATA
 export iac=$DevOps/iac
 export Media=/media/fureasu/DATA/Media
 export Programming=/media/fureasu/DATA/Programming
-export OSImages=/media/fureasu/DATA/OSImages 
-export MMR=/media/fureasu/DATA/MMR 
+export OSImages=/media/fureasu/DATA/OSImages
+export MMR=/media/fureasu/DATA/MMR
 export sshu=/media/fureasu/DATA/DevOps/sshu
 
 #prompt decoration section
@@ -27,7 +27,8 @@ C7="\[\e[1;37m\]" #gray
 short_pwd() { pwd | sed -e "s|$HOME|~|" -e 's|\(/.\)[^/]*/|\1/|g'; }
 #kubectl context
 kubectl_context() { 
-    output=$(kubectl config get-contexts | grep '*' | awk -F ' ' '{ print $2 }')
+    local output
+    output=$(kubectl config current-context 2>/dev/null)
     if [ "$output" = "" ]; then
         output="none"
     fi
@@ -37,6 +38,7 @@ kubectl_context() {
 
 #recording status
 recording_status() {
+    local rec_status
     if [ "$RECORDING" == "true" ]; then
         rec_status="🎥"
     else
@@ -62,7 +64,7 @@ ovpn_status() {
     fi
 }
 
-default_prompt="$C0[$C6🐧 \u@\h:$C4\$(short_pwd)$C0]$C5\$(__git_ps1)$C3\$(ovpn_status) $(recording_status)$C0\n\$ "
+default_prompt="$C0[$C6🐧 \u@\h:$C4\$(short_pwd)$C0]$C5\$(__git_ps1)$C3\$(ovpn_status) \$(recording_status)$C0\n\$ "
 #default prompt
 export PS1="$default_prompt"
 export PS2="-> "
@@ -80,7 +82,7 @@ hide-kctx() {
 #required system variables#
 export GTK_THEME=WhiteSur-Dark
 export BAT_THEME=ansi
-export PATH=/home/fureasu/.scripts:/media/fureasu/DATA/Programs/Godot:/home/fureasu/.vsdbg:/usr/local/go/bin:/opt/flutter/bin:/home/fureasu/.pulumi/bin:$PATH
+export PATH=$HOME/.scripts:/media/fureasu/DATA/Programs/Godot:$HOME/.vsdbg:/usr/local/go/bin:/opt/flutter/bin:$HOME/.pulumi/bin:$PATH
 export MANPAGER="vim +MANPAGER --not-a-term -"
 export GOPATH="$DATA/gopath"
 export GOCACHE="$DATA/.cache/go-build"
@@ -92,8 +94,10 @@ alias setterm='export TERM=xterm-256color'
 alias ssh='TERM=xterm-256color ssh'
 
 #kubectl auto-complete#
-source <(kubectl completion bash)
-complete -o default -F __start_kubectl k
+if command -v kubectl >/dev/null 2>&1; then
+    source <(kubectl completion bash)
+    complete -o default -F __start_kubectl k
+fi
 
 # proxy
 #export http_proxy="http://192.168.100.13:8080"
@@ -101,4 +105,4 @@ complete -o default -F __start_kubectl k
 #export no_proxy="localhost,127.0.0.1,*.lab.local,*.k8s.local"
 
 #kubectl use context
-kuc() { source /home/fureasu/.local/bin/kuc.sh "$@"; show-kctx; }
+kuc() { source "$HOME/.local/bin/kuc.sh" "$@"; show-kctx; }
