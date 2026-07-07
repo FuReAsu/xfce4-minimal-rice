@@ -45,7 +45,24 @@ recording_status() {
     echo "$rec_status"
 }
 
-default_prompt="$C0[$C6🐧 \u@\h:$C4\$(short_pwd)$C0]$C5\$(__git_ps1) $(recording_status)$C0\n\$ "
+#openvpn3 status
+ovpn_status() {
+    if command -v openvpn3 >/dev/null 2>&1; then
+        local line config_name sessions=()
+        while read -r line; do
+            if [[ "$line" =~ "Config name:" ]]; then
+                config_name="${line#*Config name: }"
+                sessions+=("$config_name")
+            fi
+        done < <(openvpn3 sessions-list 2>/dev/null)
+        
+        if [ ${#sessions[@]} -gt 0 ]; then
+            (IFS=,; echo " [${sessions[*]}]")
+        fi
+    fi
+}
+
+default_prompt="$C0[$C6🐧 \u@\h:$C4\$(short_pwd)$C0]$C5\$(__git_ps1)$C3\$(ovpn_status) $(recording_status)$C0\n\$ "
 #default prompt
 export PS1="$default_prompt"
 export PS2="-> "
