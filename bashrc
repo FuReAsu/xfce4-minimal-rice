@@ -39,7 +39,7 @@ kubectl_context() {
 #recording status
 recording_status() {
     local rec_status
-    if [ "$RECORDING" == "true" ]; then
+    if [ "$RECORDING" = "true" ]; then
         rec_status="🎥"
     else
         rec_status=""
