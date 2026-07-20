@@ -1,0 +1,27 @@
+{
+  "mcpServers": {
+    "draw-io": {
+      "command": "npx",
+      "args": [
+        "@drawio/mcp"
+      ],
+      "disabled": true
+    },
+    "k8s-lab": {
+      "command": "npx",
+      "args": [
+        "kubernetes-mcp-server@latest"
+      ],
+      "env": {
+        "KUBECONFIG": "/home/fureasu/.kube/config"
+      }
+    },
+    "Canva": {
+      "command": "npx",
+      "args": [
+        "mcp-remote@latest",
+        "https://mcp.canva.com/mcp"
+      ]
+    }
+  }
+}
