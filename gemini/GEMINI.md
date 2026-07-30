@@ -13,3 +13,8 @@
 
 1. **Store Temp Files Safely:** Save any temporary files needed during tasks into `.agent-files/temp` in the current workspace.
 2. **Clean Up:** Delete these temporary files once the major task is completed.
+
+# Progress Logging Rule
+
+1. After every major tasks, please log the progress in .agent-files/log/file-name.md files. 
+2. Name the log files with procedural numbers-topic/task name. example 01-review-project.md
