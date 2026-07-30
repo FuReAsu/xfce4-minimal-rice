@@ -2,7 +2,7 @@
 
 1. **Route Non-Code Outputs:** Save all generated non-code files (e.g., markdown, text, images, slides) exclusively to `.agent-files/out` in the current workspace.
 
-# Sensitive Information Policy
+# Sensitive Information Rule
 
 1. **Do Not Use Terminal Reading Tools on Sensitive Information:** You must NEVER use tools like `cat`, `grep`, `less`, or other generic file reading/searching commands on files containing sensitive information (e.g., tokens, passwords, private keys, session logs, or environment configs with secrets).
 2. **Find Alternative Paths:** If a task involves sensitive information, look for alternative paths (like native MCP tools, APIs, or documented endpoints) instead of reading the raw text files.
@@ -18,3 +18,4 @@
 
 1. After every major tasks, please log the progress in .agent-files/log/file-name.md files. 
 2. Name the log files with procedural numbers-topic/task name. example 01-review-project.md
+3. If temporary scripts are used, please record the overview of the steps taken by those scripts in the log file.
