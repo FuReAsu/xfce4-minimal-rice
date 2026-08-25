@@ -36,7 +36,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'jlcrochet/vim-razor'
 
 " instant markdown
-Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+"Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+
+" markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 
 call plug#end()
 
@@ -148,3 +151,8 @@ nnoremap <leader>d :e!<CR>
 
 " open terminal shortcut
 nnoremap <leader>t :botright terminal ++rows=10<CR>
+
+" Markdown Preview shortcut
+nnoremap <leader>m <Plug>MarkdownPreview
+nnoremap <leader>ms <Plug>MarkdownPreviewStop
+
